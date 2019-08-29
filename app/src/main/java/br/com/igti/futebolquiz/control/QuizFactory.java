@@ -27,7 +27,7 @@ public class QuizFactory {
         answers.add(new Answer("6"));
         answers.add(new Answer("4"));
         answers.add(new Answer("5"));
-        return new Question("Quantas vezes a seleção brasileira ganhou a copa do mundo?",2,answers);
+        return new Question("Quantas vezes a seleção brasileira ganhou a copa do mundo?",3,answers);
     }
     private static Question buildThree(){
         List<Answer> answers = new ArrayList<>();

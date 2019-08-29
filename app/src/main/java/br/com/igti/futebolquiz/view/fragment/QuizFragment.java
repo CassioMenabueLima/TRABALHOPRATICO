@@ -32,7 +32,7 @@ public class QuizFragment extends Fragment {
     private int lastQuestion;
     private FragmentQuizBinding binding;
     private Question question;
-
+    private int current = 0;
     public QuizFragment() {
     }
 
@@ -77,9 +77,9 @@ public class QuizFragment extends Fragment {
                 FutebolQuizActivity activity = ((FutebolQuizActivity) getActivity());
                 if (activity != null)
                     if (position + 1 == question.getCorrectAnswer()) {
-                        activity.correct(position);
+                        activity.correct(current);
                     } else {
-                        activity.incorrect(position);
+                        activity.incorrect(lastQuestion);
                     }
             }
         });
@@ -88,11 +88,11 @@ public class QuizFragment extends Fragment {
 
     private Question getQuestion() {
         List<Question> questions = QuizFactory.buildQuizQuestions();
-        Random gerador = new Random();
-        int result = -1;
-        while (result == lastQuestion || result < 0) {
-            result = gerador.nextInt(questions.size() - 1);
+        if(lastQuestion+1>questions.size()-1){
+            current = 0;
+        }else{
+            current = lastQuestion+1;
         }
-        return questions.get(result);
+        return questions.get(current);
     }
 }
